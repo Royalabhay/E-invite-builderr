@@ -9,6 +9,7 @@ Open:
 http://localhost:3000
 
 update deploy
+Fixed error
 
 ## Pages
 / → Home  
