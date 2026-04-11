@@ -1,16 +1,23 @@
+"use client";
+
 import Navbar from "./components/Navbar";
+import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 
-export default async function Home() {
-  const { data } = await supabase.from("products").select("*");
+export default function Home() {
+  const [products, setProducts] = useState<any[]>([]);
+
+  useEffect(() => {
+    supabase.from("products").select("*").then(({ data }) => {
+      setProducts(data || []);
+    });
+  }, []);
 
   return (
     <div style={{ background: "#f3f3f3", minHeight: "100vh" }}>
       
-      {/* NAVBAR */}
       <Navbar />
 
-      {/* HERO SECTION */}
       <div style={{
         background: "linear-gradient(to right, #232f3e, #37475a)",
         color: "white",
@@ -21,41 +28,22 @@ export default async function Home() {
         <p>Best products at best price</p>
       </div>
 
-      {/* PRODUCTS */}
       <div style={{ padding: "20px" }}>
-        <h2 style={{ marginBottom: "20px" }}>Top Products</h2>
+        <h2>Top Products</h2>
 
         <div style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
           gap: "20px"
         }}>
-          {data?.map((p: any) => (
+          {products.map((p) => (
             <div key={p.id} style={{
               background: "white",
               padding: "15px",
-              borderRadius: "8px",
-              boxShadow: "0 2px 6px rgba(0,0,0,0.1)"
+              borderRadius: "8px"
             }}>
-              <div style={{
-                height: "150px",
-                background: "#eee",
-                marginBottom: "10px"
-              }} />
-
               <h3>{p.title}</h3>
-              <p style={{ fontWeight: "bold" }}>₹{p.price}</p>
-
-              <button style={{
-                background: "#ffd814",
-                border: "none",
-                padding: "8px",
-                width: "100%",
-                marginTop: "10px",
-                cursor: "pointer"
-              }}>
-                Add to Cart
-              </button>
+              <p>₹{p.price}</p>
             </div>
           ))}
         </div>
