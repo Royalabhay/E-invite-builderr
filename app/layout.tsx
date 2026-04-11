@@ -1,10 +1,7 @@
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: any) {
   return (
     <html>
-      <body style={{ margin: 0, fontFamily: "Arial" }}>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
