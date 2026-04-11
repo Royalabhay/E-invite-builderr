@@ -1,17 +1,12 @@
 "use client";
 
 import Navbar from "./components/Navbar";
-import { useEffect, useState } from "react";
-import { supabase } from "../lib/supabase";
 
 export default function Home() {
-  const [products, setProducts] = useState<any[]>([]);
-
-  useEffect(() => {
-    supabase.from("products").select("*").then(({ data }) => {
-      setProducts(data || []);
-    });
-  }, []);
+  const products = [
+    { id: 1, title: "Demo Product 1", price: 499 },
+    { id: 2, title: "Demo Product 2", price: 999 }
+  ];
 
   return (
     <div style={{ background: "#f3f3f3", minHeight: "100vh" }}>
@@ -25,11 +20,11 @@ export default function Home() {
         textAlign: "center"
       }}>
         <h1>Welcome to MyStore</h1>
-        <p>Best products at best price</p>
+        <p>Working Website ✅</p>
       </div>
 
       <div style={{ padding: "20px" }}>
-        <h2>Top Products</h2>
+        <h2>Products</h2>
 
         <div style={{
           display: "grid",
