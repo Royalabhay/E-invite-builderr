@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Invite Builder</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Invitation Builder</h1>
+
+    <div class="form">
+      <input type="text" id="title" placeholder="Event Title">
+      <input type="text" id="name" placeholder="Host Name">
+      <input type="date" id="date">
+      <input type="text" id="venue" placeholder="Venue">
+      <button onclick="generateInvite()">Generate</button>
+      <button onclick="downloadImage()">Download</button>
+    </div>
+
+    <div id="card" class="card">
+      <h2 id="cTitle">Your Event</h2>
+      <p id="cName"></p>
+      <p id="cDate"></p>
+      <p id="cVenue"></p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
